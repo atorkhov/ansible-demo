@@ -22,6 +22,9 @@
   - name: test apache is responding
     wait_for: host={{ inventory_hostname }} port=80
 
+  - name: bla
+    script: curl http://localhost/
+
   - name: test apache returns content
     uri: url=http://localhost/ return_content=yes
     register: webpage
