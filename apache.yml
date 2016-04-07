@@ -1,8 +1,6 @@
 ---
 - hosts: localhost
   vars:
-    http_port: 80
-    max_clients: 200
     text: "Hello World"
   remote_user: root
   tasks:
@@ -20,6 +18,17 @@
     sudo: yes
   - name: ensure apache is running (and enable it at boot)
     service: name=apache2 state=started enabled=yes
+
+  - name: test apache is responding
+    wait_for: host={{ inventory_hostname }} port=80
+
+  - name: test apache returns content
+    uri: url=http://localhost/ return_content=yes
+    register: webpage
+
+  - fail: msg='apache does not return content'
+    when: "'Hello World' not in webpage.content"
+
   handlers:
     - name: restart apache
       service: name=apache2 state=restarted
