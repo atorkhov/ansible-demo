@@ -1,4 +1,1 @@
 localhost ansible_connection=local
-
-[vars]
-text="Hello World"
