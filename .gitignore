@@ -1,0 +1,4 @@
+# Vagrant runtime files
+.vagrant/
+# Ansible runtime files
+*.retry
