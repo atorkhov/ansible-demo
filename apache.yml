@@ -6,10 +6,14 @@
   remote_user: root
   tasks:
   - name: ensure apache is at the latest version
-    apt: name=apache2 state=latest
+    apt:
+      name=apache2
+      state=latest
     sudo: yes
   - name: write the apache config file
-    template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+    template:
+      src=index.html
+      dest=/var/www/
     notify:
     - restart apache
     sudo: yes
