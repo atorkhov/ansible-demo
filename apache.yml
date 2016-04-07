@@ -27,7 +27,7 @@
     register: webpage
 
   - name: debug
-    debug: var=webpage verbosity=2
+    debug: var=webpage verbosity=0
 
   - fail: msg='apache does not return content'
     when: "'Hello World' not in webpage.content"
