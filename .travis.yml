@@ -1,7 +1,12 @@
+---
+language: python
+python: "2.7"
+
 sudo: yes
 dist: trusty
 addons:
   apt:
     packages:
     - ansible
-script: ansible-playbook apache.yml
+script:
+  - "ansible-playbook -i inventory apache.yml --connection=local --sudo"
