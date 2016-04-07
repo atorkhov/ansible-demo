@@ -1,6 +1,7 @@
-sudo: no
+sudo: yes
+dist: trusty
 addons:
   apt:
     packages:
-    - virtualbox
-    - vagrant
+    - ansible
+script: ansible-playbook apache.yml
