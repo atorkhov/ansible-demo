@@ -3,20 +3,27 @@
   vars:
     who: "World"
   tasks:
+
+  # Setup
+
   - name: ensure apache is at the latest version
     apt:
       name=apache2
       state=latest
     sudo: yes
-  - name: write the apache config file
+
+  - name: deploy sample HTML page
     template:
       src=index.html
       dest=/var/www/html/
     notify:
     - restart apache
     sudo: yes
+
   - name: ensure apache is running (and enable it at boot)
     service: name=apache2 state=started enabled=yes
+
+  # Tests
 
   - name: test apache is responding
     wait_for: host=localhost port=80
